@@ -80,7 +80,7 @@ const selectedCategory = ref('All');
 
 const categories = ['All', 'Business', 'Entertainment', 'General', 'Health', 'Science', 'Sports', 'Technology'];
 
-const API_KEY = "db39da81d5b54e9e9a78a2191c271a3a";
+const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 const BASE_URL = "https://newsapi.org/v2/top-headlines?country=us";
 
 interface Article {
