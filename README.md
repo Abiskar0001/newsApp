@@ -31,7 +31,7 @@ A modern, responsive web application built using Vue 3 and the Ionic Framework t
 ### 1. Clone the project
 
 ```
-git clone [https://github.com/your-username/your-repo-name](https://github.com/Abiskar0001/newsApp
+git clone https://github.com/your-username/your-repo-name](https://github.com/Abiskar0001/newsApp
 cd newsApp
 ```
 
