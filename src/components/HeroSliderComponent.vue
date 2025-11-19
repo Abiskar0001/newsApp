@@ -8,20 +8,23 @@
       class="hero-slider"
       @swiper="onSwiperInit"
     >
-      <swiper-slide v-for="(item, index) in slides" :key="item.id">
-        <div class="slide">
-          <img :src="item.image" :alt="item.title" class="slide-image" />
-          <div class="slide-overlay">
-            <h2 class="headline">{{ item.title }}</h2>
-            <p class="subtext">{{ item.description }}</p>
-            <div class="meta">
-              <span class="source">{{ item.source }}</span>
-              <span class="time">{{ item.time }}</span>
-            </div>
-            <button class="read-button">Read Full Story</button>
-          </div>
-        </div>
-      </swiper-slide>
+      <swiper-slide v-for="(item, index) in slides" :key="index">
+  <div class="slide">
+    <img :src="item.image" :alt="item.title" class="slide-image" />
+    <div class="slide-overlay">
+      <h2 class="headline">{{ item.title }}</h2>
+      <p class="subtext">{{ item.summary }}</p>
+
+      <div class="meta">
+        <span class="source">{{ item.source }}</span>
+      </div>
+
+      <button class="read-button" @click="openLink(item.url)">
+        Read Full Story
+      </button>
+    </div>
+  </div>
+</swiper-slide>
     </swiper>
 
     <!-- Custom dot indicators -->
@@ -44,34 +47,16 @@ import 'swiper/css';
 
 const currentSlide = ref(0);
 let swiperInstance: any = null;
-
-const slides = [
-  {
-    id: 1,
-    title: 'Major Breakthrough in Renewable Energy Technology Announced',
-    description: 'Scientists have developed a new solar panel technology that promises to double energy efficiency.',
-    source: 'Tech Daily',
-    time: '2h ago',
-    image: 'https://picsum.photos/900/500?random=2'
-  },
-  {
-    id: 2,
-    title: 'AI Revolutionizes Medical Diagnostics',
-    description: 'New AI tools are helping doctors detect diseases earlier and more accurately than ever before.',
-    source: 'Health Weekly',
-    time: '5h ago',
-    image: 'https://picsum.photos/900/500?random=3'
-  },
-  {
-    id: 3,
-    title: 'SpaceX Launches Next-Gen Satellite Network',
-    description: 'The new constellation aims to provide high-speed internet to remote regions worldwide.',
-    source: 'Orbit News',
-    time: '3h ago',
-    image: 'https://picsum.photos/900/500?random=4'
-  }
-];
-
+defineProps<{
+  slides: Array<{
+    image: string;
+    title: string;
+    summary: string;
+    source: string;
+    time: string;
+    url: string;
+  }>;
+}>();
 const onSwiperInit = (swiper: any) => {
   swiperInstance = swiper;
   currentSlide.value = swiper.realIndex;
@@ -82,6 +67,11 @@ const onSwiperInit = (swiper: any) => {
 
 const goToSlide = (index: number) => {
   if (swiperInstance) swiperInstance.slideToLoop(index);
+};
+
+const openLink = (url: string) => {
+  if (!url) return;
+  window.open(url, '_blank');
 };
 </script>
 
@@ -94,7 +84,7 @@ const goToSlide = (index: number) => {
   width: 95%;          
   max-width: 100%;     
   margin: 1rem auto;
-  height: 400px;        /* Adjust as needed */
+  height: 600px;
 }
 
 .slide {
