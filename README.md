@@ -1,4 +1,4 @@
-# NewsFlash – Web-Based News Application
+# NewsApp – Web-Based News Application
 
 A modern, responsive web application built using Vue 3 and the Ionic Framework that retrieves and displays real‑time news from NewsAPI.org. Users can browse categories, search articles, switch between grid/list views, and bookmark articles – all within a clean, mobile‑friendly web UI.
 
